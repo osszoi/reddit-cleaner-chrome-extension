@@ -17,7 +17,7 @@ const removePostsLabeledAs = (labels = []) => {
 const main = () => {
 	removePromotedPostsFromReddit();
 	removePostsLabeledAs([
-		'Popular near you',
+		'Popular',
 		'Based on your recent activity',
 		'Suggested for you',
 		'Suggested',
