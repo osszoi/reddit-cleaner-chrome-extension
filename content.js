@@ -60,12 +60,12 @@ const createStatsPanel = () => {
     font-size: 13px;
     z-index: 9999;
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    min-width: 280px;
+    min-width: 160px;
   `;
 
   panel.innerHTML = `
     <div style="font-size: 14px; font-weight: bold; color: #FF4500; margin-bottom: 10px;">
-      🧹 Reddit Cleaner Stats
+      Reddit Cleaner
     </div>
     <div id="reddit-cleaner-stats-content"></div>
   `;
@@ -86,8 +86,10 @@ const updateStats = () => {
   const suggestedRemoved = classifications.filter((c) => c === "p").length;
 
   const okayPercent = totalSeen > 0 ? ((okay / totalSeen) * 100).toFixed(1) : 0;
-  const adsPercent = totalSeen > 0 ? ((adsRemoved / totalSeen) * 100).toFixed(1) : 0;
-  const suggestedPercent = totalSeen > 0 ? ((suggestedRemoved / totalSeen) * 100).toFixed(1) : 0;
+  const adsPercent =
+    totalSeen > 0 ? ((adsRemoved / totalSeen) * 100).toFixed(1) : 0;
+  const suggestedPercent =
+    totalSeen > 0 ? ((suggestedRemoved / totalSeen) * 100).toFixed(1) : 0;
 
   const createBar = (percent) => {
     const safePercent = Math.max(0, Math.min(100, parseFloat(percent) || 0));
@@ -141,7 +143,9 @@ const main = () => {
   const todayPosts = getTodayPosts();
 
   const allAdPosts = Array.from(document.querySelectorAll("shreddit-ad-post"));
-  const allRegularPosts = Array.from(document.querySelectorAll("article:has(shreddit-post)"));
+  const allRegularPosts = Array.from(
+    document.querySelectorAll("article:has(shreddit-post)")
+  );
 
   allAdPosts.forEach((el) => {
     const id = el.id || el.getAttribute("data-post-id");
@@ -154,7 +158,9 @@ const main = () => {
     const id = el.id || el.getAttribute("data-post-id");
     if (id && !todayPosts[id]) {
       const creditBar = el.querySelector('span[slot="credit-bar"]');
-      const hasJoinButton = el.querySelector("shreddit-post shreddit-join-button");
+      const hasJoinButton = el.querySelector(
+        "shreddit-post shreddit-join-button"
+      );
 
       if (creditBar) {
         const text = creditBar.textContent;
