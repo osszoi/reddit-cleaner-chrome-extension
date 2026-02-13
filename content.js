@@ -172,17 +172,19 @@ const updateStats = () => {
   `;
 };
 
-if (document.body) {
-  createStatsPanel();
-  updateStats();
-} else {
-  document.addEventListener("DOMContentLoaded", () => {
+if (window.location.hostname.includes("reddit.com")) {
+  if (document.body) {
     createStatsPanel();
     updateStats();
-  });
-}
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      createStatsPanel();
+      updateStats();
+    });
+  }
 
-setInterval(updateStats, 1000);
+  setInterval(updateStats, 1000);
+}
 
 // =============== MAIN ===============
 const promotedLabels = [
@@ -236,4 +238,6 @@ const main = () => {
 };
 
 // =============== MAIN LOOP ===============
-setInterval(main, 500);
+if (window.location.hostname.includes("reddit.com")) {
+  setInterval(main, 500);
+}
