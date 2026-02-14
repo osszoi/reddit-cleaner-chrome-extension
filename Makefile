@@ -1,7 +1,7 @@
 ZIP = reddit-cleaner-extension.zip
 
 build:
-	zip -r $(ZIP) manifest.json content.js icons/
+	zip -r $(ZIP) manifest.json content.js popup.html popup.js icons/
 
 clean:
 	rm -f $(ZIP)
